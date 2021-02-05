@@ -12,8 +12,8 @@ class MixUtil {
   static SharedPreferences _preferences;
   static SharedPreferences get preferences => _preferences;
   static String apiHost = "http://128.199.217.247";
-  static String clientId = "20";
-  static String clientPassword = "9vE0HB3BNUf5L4elZa3YwI7mKeDoWEAAZWUYVUqe";
+  static String clientId = "2";
+  static String clientPassword = "CnFdkOsD1NYQMsa67ryxpfWWxHi7F7e0zJWOWleC";
   static http.Client _client;
 
   static http.Client get client => _client;
