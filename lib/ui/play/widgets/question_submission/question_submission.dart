@@ -89,142 +89,157 @@ class _QuestionSubmission extends State<QuestionSubmission> {
   }
 
   Widget buildCorrectAnswer (Submission data) {
-    return Column(
-      mainAxisAlignment: MainAxisAlignment.center,
-      crossAxisAlignment: CrossAxisAlignment.center,
-      children: [
-        SizedBox(
-          width: 200,
-          height: 200,
-          child: Image(
-            image: AssetImage(
-              "assets/correct_anwer.png"
+    return SingleChildScrollView(
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        crossAxisAlignment: CrossAxisAlignment.center,
+        children: [
+          SizedBox(
+            width: 200,
+            height: 200,
+            child: Image(
+              image: AssetImage(
+                  "assets/correct_anwer.png"
+              ),
             ),
           ),
-        ),
-        Container(
-          height: 10,
-        ),
-        Text(
-          "Hore !!!!! Your Answer is corrent",
-          style: TextStyle(
-            color: Colors.green,
-            fontSize: 30
+          Container(
+            height: 10,
           ),
-        ),
-        Container(
-          height: 10,
-        ),
-        Text(
-          "You got " + data.point.toString() + " point!!",
-          style: TextStyle(
+          Text(
+            "Hore !!!!! Your Answer is corrent",
+            style: TextStyle(
+              color: Colors.green,
+              fontSize: 30,
+            ),
+            textAlign: TextAlign.center,
+          ),
+          Container(
+            height: 10,
+          ),
+          Text(
+            "You got " + data.point.toString() + " point!!",
+            style: TextStyle(
               color: Colors.black,
               fontSize: 40
-          ),
-        ),
-        Container(
-          height: 10,
-        ),
-        SizedBox(
-          width: 200,
-          height: 50,
-          child: RaisedButton(
-            onPressed: () {
-              _playBloc.add(GeneratePlayEvent());
-            },
-            color: Colors.green,
-            child: Text(
-              "Continue ..."
             ),
+            textAlign: TextAlign.center,
           ),
-        )
-      ],
+          Container(
+            height: 10,
+          ),
+          SizedBox(
+            width: 200,
+            height: 50,
+            child: RaisedButton(
+              onPressed: () {
+                _playBloc.add(GeneratePlayEvent());
+              },
+              color: Colors.green,
+              child: Text(
+                  "Continue ..."
+              ),
+            ),
+          )
+        ],
+      ),
     );
   }
 
   Widget buildWrongAnswer (Submission data) {
-    return Column(
-      mainAxisAlignment: MainAxisAlignment.center,
-      crossAxisAlignment: CrossAxisAlignment.center,
-      children: [
-        SizedBox(
-          width: 200,
-          height: 200,
-          child: Image(
-            image: AssetImage(
-                "assets/wrong_answer.png"
-            ),
-          ),
-        ),
-        Container(
-          height: 10,
-        ),
-        Text(
-          "Booo... You answer is wrong",
-          style: TextStyle(
-              color: Colors.green,
-              fontSize: 30
-          ),
-        ),
-        Container(
-          height: 10,
-        ),
-        Text(
-          "Your point deducted by " + data.point.abs().toString() + " point..",
-          style: TextStyle(
-              color: Colors.black,
-              fontSize: 40
-          ),
-        ),
-        Container(
-          height: 10,
-        ),
-        Row(
-          mainAxisAlignment: MainAxisAlignment.center,
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: [
-            SizedBox(
-              width: 200,
-              height: 50,
-              child: RaisedButton(
-                onPressed: () {
-                  _bloc.add(TryAgainEvent());
-                },
-                color: Colors.green,
-                child: Text(
-                    "Try Again"
-                ),
+    return SingleChildScrollView(
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        crossAxisAlignment: CrossAxisAlignment.center,
+        children: [
+          SizedBox(
+            width: 200,
+            height: 200,
+            child: Image(
+              image: AssetImage(
+                  "assets/wrong_answer.png"
               ),
             ),
-            Container(
-              width: 10,
-            ),
-            SizedBox(
-              width: 200,
-              height: 50,
-              child: RaisedButton(
-                onPressed: () {
-                  _playBloc.add(GeneratePlayEvent());
-                },
+          ),
+          Container(
+            height: 10,
+          ),
+          Text(
+            "Booo... You answer is wrong",
+            style: TextStyle(
                 color: Colors.green,
-                child: Text(
-                  "Get Another Question"
+                fontSize: 30
+            ),
+            textAlign: TextAlign.center,
+          ),
+          Container(
+            height: 10,
+          ),
+          Text(
+            "Your point deducted by " + data.point.abs().toString() + " point..",
+            style: TextStyle(
+                color: Colors.black,
+                fontSize: 40
+            ),
+            textAlign: TextAlign.center,
+          ),
+          Container(
+            height: 10,
+          ),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              Expanded(
+                flex:50,
+                child: Container(
+                  height: 70,
+                  child: RaisedButton(
+                    onPressed: () {
+                      _bloc.add(TryAgainEvent());
+                    },
+                    color: Colors.red,
+                    child: Text(
+                      "Try Again"
+                    ),
+                  ),
                 ),
               ),
-            )
-          ],
-        )
-      ],
+              Container(
+                width: 10,
+              ),
+              Expanded(
+                flex:50,
+                child: Container(
+                  height: 70,
+                  child: RaisedButton(
+                    onPressed: () {
+                      _playBloc.add(GeneratePlayEvent());
+                    },
+                    color: Colors.green,
+                    child: Text(
+                        "Refresh Question"
+                    ),
+                  ),
+                ),
+              )
+            ],
+          )
+        ],
+      ),
     );
   }
 
   Widget buildQuiz () {
-    return Container(
-      child: Column(
-        children: [
-          Expanded(
-            flex: 60,
-            child: Container(
+    return SingleChildScrollView(
+      child: Container(
+        child: Column(
+          children: [
+            Container(
+              padding: EdgeInsets.symmetric(
+                vertical: 40,
+                horizontal: 30
+              ),
               alignment: Alignment.center,
               child: Wrap(
                 children: buildAnswer(),
@@ -238,10 +253,8 @@ class _QuestionSubmission extends State<QuestionSubmission> {
                   borderRadius: BorderRadius.circular(10)
               ),
             ),
-          ),
-          Expanded(
-            flex: 30,
-            child: Container(
+            Container(
+              padding: EdgeInsets.all(20),
               alignment: Alignment.center,
               child: Wrap(
                 children: buildQuestion(),
@@ -251,26 +264,24 @@ class _QuestionSubmission extends State<QuestionSubmission> {
                 spacing: 10,
               ),
             ),
-          ),
-          Expanded(
-            flex: 10,
-            child: Container(
+            Container(
               padding: EdgeInsets.all(10),
               child: SizedBox(
                 width: double.infinity,
+                height: 70,
                 child: RaisedButton(
                   onPressed: answer.length == question.length ? () {
                     submitAnswer();
                   } : null,
                   child: Text(
-                      "Submit Answer"
+                    "Submit Answer"
                   ),
                   color: Colors.amber,
                 ),
               ),
-            ),
-          )
-        ],
+            )
+          ],
+        ),
       ),
     );
   }
@@ -281,48 +292,52 @@ class _QuestionSubmission extends State<QuestionSubmission> {
     List<String> tmpKeys = answer.keys.toList();
     for (int i = 0; i < question.length; i ++) {
       widgets.add(Container(
-        height: 100,
-        width: 75,
-        alignment: Alignment.center,
-        child: Stack(
-          children: [
-            Center(
-              child: Text(
-                (i < tmpAns.length) ? tmpAns[i] : "",
-                style: TextStyle(
-                    color: Colors.white,
-                    fontWeight: FontWeight.bold,
-                    fontSize: 30
-                ),
-              ),
-            ),
-            Builder(
-              builder: (context) {
-                if (i == (tmpAns.length-1)) {
-                  return Positioned(
-                    top: 0,
-                    right: 0,
-                    child: GestureDetector(
-                      onTap: () {
-                        setState(() {
-                          answer.remove(tmpKeys[i]);
-                        });
-                      },
-                      child: Icon(
-                        Icons.delete,
-                        color: Colors.red,
-                      ),
+        width: MediaQuery.of(context).size.width/10,
+        child: AspectRatio(
+          aspectRatio: 3/4,
+          child: Container(
+            alignment: Alignment.center,
+            child: Stack(
+              children: [
+                Center(
+                  child: Text(
+                    (i < tmpAns.length) ? tmpAns[i] : "",
+                    style: TextStyle(
+                        color: Colors.white,
+                        fontWeight: FontWeight.bold,
+                        fontSize: 30
                     ),
-                  );
-                }
-                return Container();
-              },
-            )
-          ],
-        ),
-        decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(5),
-          color: Colors.blue
+                  ),
+                ),
+                Builder(
+                  builder: (context) {
+                    if (i == (tmpAns.length-1)) {
+                      return Positioned(
+                        top: 0,
+                        right: 0,
+                        child: GestureDetector(
+                          onTap: () {
+                            setState(() {
+                              answer.remove(tmpKeys[i]);
+                            });
+                          },
+                          child: Icon(
+                            Icons.delete,
+                            color: Colors.red,
+                          ),
+                        ),
+                      );
+                    }
+                    return Container();
+                  },
+                )
+              ],
+            ),
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(5),
+              color: Colors.blue
+            ),
+          ),
         ),
       ));
     }
@@ -341,20 +356,24 @@ class _QuestionSubmission extends State<QuestionSubmission> {
           }
         },
         child: Container(
-          height: 100,
-          width: 75,
-          alignment: Alignment.center,
-          child: Text(
-            question[i],
-            style: TextStyle(
-                color: Colors.white,
-                fontWeight: FontWeight.bold,
-                fontSize: 30
+          width: MediaQuery.of(context).size.width/10,
+          child: AspectRatio(
+            aspectRatio: 3/4,
+            child: Container(
+              alignment: Alignment.center,
+              child: Text(
+                question[i],
+                style: TextStyle(
+                    color: Colors.white,
+                    fontWeight: FontWeight.bold,
+                    fontSize: 30
+                ),
+              ),
+              decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(5),
+                  color: (answer.containsKey(question[i]+"_"+i.toString())) ? Colors.blue[200] : Colors.blue
+              ),
             ),
-          ),
-          decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(5),
-              color: (answer.containsKey(question[i]+"_"+i.toString())) ? Colors.blue[200] : Colors.blue
           ),
         ),
       ));

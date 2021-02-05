@@ -47,15 +47,20 @@ class _Scoreboard extends State<Scoreboard> {
                     if (state.datas.length > 0) {
                       return Container(
                         padding: EdgeInsets.all(20),
-                        child: ListView.builder(
+                        child: ListView.separated(
                           itemCount: state.datas.length,
+                          separatorBuilder: (context, index) {
+                            return Container(
+                              height: 10,
+                            );
+                          },
                           itemBuilder: (context, index) {
                             switch (index) {
                               case 0 :
                                 return FirstPost(index + 1, state.datas[index]);
                               case 1 :
                                 return SecondPost(index + 1, state.datas[index]);
-                              case 3 :
+                              case 2 :
                                 return ThirdPost(index + 1, state.datas[index]);
                               default :
                                 return OtherPost(index + 1, state.datas[index]);
@@ -221,7 +226,7 @@ class SecondPost extends StatelessWidget {
         ],
       ),
       decoration: BoxDecoration(
-          color: Colors.white54,
+          color: Color(0xFFC0C0C0),
           borderRadius: BorderRadius.circular(10)
       ),
     );

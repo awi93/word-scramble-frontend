@@ -52,20 +52,6 @@ class _Login extends State<Login> {
                                   Row(
                                     children: <Widget>[
                                       Expanded(
-                                        flex: 18,
-                                        child: Container(
-                                          alignment: Alignment.center,
-                                          child: Text(
-                                            "Email",
-                                            style: TextStyle(
-                                                color: Colors.grey[800],
-                                                fontSize: 24,
-                                                fontWeight: FontWeight.bold),
-                                          ),
-                                        ),
-                                      ),
-                                      Expanded(
-                                        flex: 82,
                                         child: TextFormField(
                                           onSaved: (String value) {
                                             _username = value;
@@ -97,20 +83,6 @@ class _Login extends State<Login> {
                                   Row(
                                     children: <Widget>[
                                       Expanded(
-                                        flex: 18,
-                                        child: Container(
-                                          alignment: Alignment.center,
-                                          child: Text(
-                                            "Name",
-                                            style: TextStyle(
-                                                color: Colors.grey[800],
-                                                fontSize: 24,
-                                                fontWeight: FontWeight.bold),
-                                          ),
-                                        ),
-                                      ),
-                                      Expanded(
-                                        flex: 82,
                                         child: TextFormField(
                                           onSaved: (String value) {
                                             _name = value;
@@ -138,7 +110,8 @@ class _Login extends State<Login> {
                                   ),
                                   Container(height: 20),
                                   Container(
-                                    alignment: Alignment.center,
+                                    width: double.infinity,
+                                    height: 50,
                                     child: RaisedButton(
                                       onPressed: () {
                                         if (_formKey.currentState.validate()) {
@@ -152,6 +125,7 @@ class _Login extends State<Login> {
                                         }
                                       },
                                       child: Text("Join"),
+                                      color: Colors.blue,
                                     ),
                                   )
                                 ],
